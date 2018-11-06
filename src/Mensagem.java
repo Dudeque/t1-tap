@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Mensagem {
-    private String mensagem;
-    private Usuario remetente;
-    private List<Usuario> visualizaram;
     private String conteudo;
 
+    private Usuario remetente;
+    private Grupo grupo;
+    private List<Usuario> visualizaram;
     public String getConteudo() {
         return this.conteudo;
     }
@@ -29,6 +29,14 @@ public abstract class Mensagem {
 
     public void setRemetente(Usuario remetente) {
         this.remetente = remetente;
+    }
+
+    public Grupo getGrupo() {
+        return this.remetente;
+    }
+
+    public void setGrupo(Grupo grupo) {
+        this.grupo = grupo;
     }
 
     public List<Usuario> getVisualizaram() {
