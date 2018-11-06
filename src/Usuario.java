@@ -1,9 +1,13 @@
+import java.util.ArrayList;
+import java.util.List;	
+
 public class Usuario implements Observer {
 
     private String nome;
     private String numero;
     private String status;
     private String foto;
+    private List<Grupo> grupos;
 
 	public String getNome()
 	{
@@ -45,9 +49,32 @@ public class Usuario implements Observer {
 		this.foto = foto;
 	}
 
+	public List<Grupo> getGrupos()
+	{
+		return this.grupos;
+	}
+
+	public void setGrupos(List<Grupo> grupos)
+	{
+		this.grupos = grupos;
+	}
+
 	public void update(Grupo grupo)
 	{
 		System.out.println(this.nome + " recebeu mensagem no grupo " + grupo.getNome());
 	}
+
+	public void adicionarUsuarioGrupo(Usuario usuario, Grupo grupo)
+	{
+		grupo.adicionarUsuario(this, (Observer)usuario);
+	} 
+
+	public void adicionarUsuariosGrupo(Usuario usuarios[], Grupo grupo)
+	{
+		for (Usuario usuario : usuarios)
+			adicionarUsuarioGrupo(usuario, grupo);
+	} 
+
+
 
 }

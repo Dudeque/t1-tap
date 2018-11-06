@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Grupo {
     
     private String nome;
@@ -5,6 +8,7 @@ public class Grupo {
     private Usuario administrador;
     private List<Observer> membros;
     private List<Mensagem> mensagens;
+
 
     public String getNome() {
         return this.nome;
@@ -44,6 +48,21 @@ public class Grupo {
 
     public void setMensagens(List<Mensagem> mensagens) {
         this.mensagens = mensagens;
+    }
+
+    public void adicionarUsuario(Usuario administrador, Observer membro) {
+        if (administrador == this.administrador) {
+            membros.add(membro);
+        }
+    }
+
+    public void removerUsuario(Observer membro) {
+        membros.remove(membro);
+    }
+
+    public void notificar() {
+        for (Observer membro : membros)
+            membro.update(this);
     }
 
 }

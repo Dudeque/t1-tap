@@ -1,3 +1,3 @@
-public class Mensagemvideo extends Mensagem {
+public class MensagemVideo extends Mensagem {
     
 }

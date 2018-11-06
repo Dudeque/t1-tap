@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Mensagem {
     private String mensagem;
     private Usuario remetente;
