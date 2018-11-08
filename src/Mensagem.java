@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+    import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Mensagem {
@@ -59,4 +59,6 @@ public abstract class Mensagem {
     public void setVisualizaram(List<Usuario> visualizaram) {
         this.visualizaram = visualizaram;
     }
+
+    public abstract void imprimir();
 }

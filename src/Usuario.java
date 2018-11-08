@@ -96,36 +96,34 @@ public class Usuario implements Observer {
 			adicionarUsuarioGrupo(usuario, grupo);
 	} 
 
-	private void enviarMensagem(Mensagem mensagem) {
+	private int enviarMensagem(Mensagem mensagem) {
 		Comando enviarMensagem = new EnviarMensagemComando(mensagem);
 		Comando cancelarMensagem = new CancelarMensagemComando(mensagem);
 		
 		enviarMensagem.executar();
 		this.cancelarMensagemComandos.add(cancelarMensagem);
+
+		return cancelarMensagemComandos.indexOf(cancelarMensagem);
 	}
 
 	public int enviarMensagemTexto(Grupo grupo, String texto) {
 		Mensagem mensagem = MensagemFactory.criarMensagemTexto(texto, this, grupo);
-		enviarMensagem(mensagem);
-		return mensagem.getId();
+		return enviarMensagem(mensagem);
 	}
 
 	public int enviarMensagemAudio(Grupo grupo, String tituloAudio) {
 		Mensagem mensagem = MensagemFactory.criarMensagemAudio(tituloAudio, this, grupo);
-		enviarMensagem(mensagem);
-		return mensagem.getId();
+		return enviarMensagem(mensagem);
 	}
 
 	public int enviarMensagemVideo(Grupo grupo, String caminhoVideo) {
 		Mensagem mensagem = MensagemFactory.criarMensagemVideo(caminhoVideo, this, grupo);
-		enviarMensagem(mensagem);
-		return mensagem.getId();
+		return enviarMensagem(mensagem);
 	}
 
 	public int enviarMensagemImagem(Grupo grupo, String caminhoImagem) {
 		Mensagem mensagem = MensagemFactory.criarMensagemImagem(caminhoImagem, this, grupo);
-		enviarMensagem(mensagem);
-		return mensagem.getId();
+		return enviarMensagem(mensagem);
 	}
 
 	public void visualizarGrupo(Grupo grupo) {
@@ -139,23 +137,21 @@ public class Usuario implements Observer {
 			List<Usuario> visualizaramMensagem = mensagem.getVisualizaram();
 			if (mensagem.isCancelada()) {
 				if (visualizaramMensagem.contains(this)) {
-					System.out.println(mensagem.getRemetente().getNome() + ": " +mensagem.getConteudo());
+					mensagem.imprimir();
 				}
 			} else {
 				if (!visualizaramMensagem.contains(this)) {
 					visualizaramMensagem.add(this);
 				}
-				System.out.println(mensagem.getRemetente().getNome() + ": " +mensagem.getConteudo());
+				mensagem.imprimir();
 			}
 		}
 
 		System.out.println();
 	}
 
-	public void cancelarMensagem(int idMensagem) {
-		for (Comando cancelarMensagemComando : cancelarMensagemComandos)
-			if (((CancelarMensagemComando)cancelarMensagemComando).getMensagem().getId() == idMensagem)
-				cancelarMensagemComando.executar();
+	public void cancelarMensagem(int idComando) {
+		cancelarMensagemComandos.get(idComando).executar();
 	}
 
 }
