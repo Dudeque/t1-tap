@@ -60,7 +60,11 @@ public class Grupo {
     }
 
     public void adicionarUsuario(Usuario administrador, Observer membro) {
-        if (administrador == this.administrador) {
+        // Checa se quem está tentando adicionar é administrador
+        // E se quem está sendo adicionado já não faz parte do grupo
+        if (administrador.getId() == this.administrador.getId()
+             && !membros.contains(membro)) {
+            // Se sim, adiciona
             membros.add(membro);
         }
     }
@@ -69,9 +73,11 @@ public class Grupo {
         membros.remove(membro);
     }
 
+
     public void notificar() {
+        // Percorre a lista de membros do grupo
         for (Observer membro : membros)
-            membro.update(this);
+            membro.update(this); // Notifica os membros sobre a nova mensagem
             
         System.out.println();
     }

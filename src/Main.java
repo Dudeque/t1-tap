@@ -64,8 +64,7 @@ public class Main {
         p2.visualizarGrupo(g3);
         p3.visualizarGrupo(g3);
         p4.visualizarGrupo(g3);
-
-       /* g1.getMembros().forEach(usuario -> System.out.println(((Usuario) usuario).getNome())); */       
+   
     }
     
 }

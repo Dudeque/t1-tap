@@ -13,8 +13,8 @@ public class EnviarMensagemComando implements Comando {
 	public void executar() {
 		Grupo grupo = mensagem.getGrupo();
 
-		grupo.getMensagens().add(mensagem);
-		grupo.notificar();
+		grupo.getMensagens().add(mensagem); // Adiciona mensagem à lista de mensagens do grupo
+		grupo.notificar(); // Notifica os membros do grupo da chegada da mensagem
 	}
 
 }
