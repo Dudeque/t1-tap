@@ -3,12 +3,21 @@ import java.util.List;
 
 public class Grupo {
     
+	private int id;
+
     private String nome;
     private String descricao;
     private Usuario administrador;
     private List<Observer> membros;
     private List<Mensagem> mensagens;
 
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return this.nome;
@@ -63,6 +72,8 @@ public class Grupo {
     public void notificar() {
         for (Observer membro : membros)
             membro.update(this);
+            
+        System.out.println();
     }
 
 }

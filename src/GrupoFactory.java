@@ -3,6 +3,8 @@ import java.util.List;
 
 public class GrupoFactory{
 
+    private static int ultimoId = 0;
+
     public static Grupo criarGrupo(String nome, String descricao, Usuario administrador)
     {   Grupo grupo = new Grupo();
         grupo.setNome(nome);
@@ -12,8 +14,12 @@ public class GrupoFactory{
 
         grupo.adicionarUsuario(administrador, (Observer) administrador);
         administrador.getGrupos().add(grupo);
-
+        
         grupo.setMensagens(new ArrayList<Mensagem>());
+        
+        grupo.setId(GrupoFactory.ultimoId);
+        GrupoFactory.ultimoId++;
+
         return grupo;
     }
     

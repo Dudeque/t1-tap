@@ -1,13 +1,17 @@
 public class CancelarMensagemComando implements Comando {
 	
-	public Mensagem mensagem;
+	private Mensagem mensagem;
+
+	public Mensagem getMensagem() {
+		return this.mensagem;
+	}
 
 	public CancelarMensagemComando(Mensagem mensagem) {
 		this.mensagem = mensagem;
 	}
 
 	public void executar() {
-		//todo
+		mensagem.setCancelada(true);
 	}
 
 }
