@@ -73,7 +73,6 @@ Algumas decisões de projeto bem importantes foram tomadas. A explicação para 
  - Um grupo só pode ter um administrador, localizado no atributo do tipo _Usuário_, administrador.
  - O grupo possuí uma lista de objetos do tipo _Observer_, iterada para notificar os _observers_ de uma nova mensagem.
  - A lógica de adição de Usuários ficou a seguinte, pelos motivos explicados na seção **Usuários**:
- 
 ```java
 public class Usuario {
 ...
@@ -101,7 +100,6 @@ public class Grupo {
 	 - Uma outra ideia para o processo acima seria de que cada Usuários possuísse uma lista de Mensagens para cada Grupo que faz parte (n listas, onde n é o número de grupos). Dessa forma, ao acessar um grupo, ele **atualizaria** sua própria lista com as mensagens novas. O cancelamento consistiria da remoção da Mensagem da lista de Mensagens existentes no grupo. A ideia foi descartada pois, em termos de **escalabilidade**,  adicionaria um _overhead_ na visualização do grupo, havendo a possibilidade de adicionar centenas de mensagens de uma vez. Além disso, o maior gasto de memória necessário.
 
 - A lógica de visualização de mensagens ficou da seguinte maneira:
-		
 ```java
 		List<Mensagem> mensagensGrupo = grupo.getMensagens();
 		
